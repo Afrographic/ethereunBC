@@ -4,6 +4,7 @@
     "description": "Small project to learn about BlockChain Dev",
     "main": "app.js",
     "scripts": {
+        ".": "lite-server",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
