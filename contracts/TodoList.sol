@@ -7,7 +7,6 @@ contract TodoList{
     uint public taskCount = 0;
     mapping(uint =>Task) public tasks;
 
-
     struct Task{
         uint id;
         string content;
@@ -19,3 +18,4 @@ contract TodoList{
         tasks[taskCount] = Task(taskCount,_content,false);
     }
 }
+
