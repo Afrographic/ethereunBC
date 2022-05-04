@@ -42,6 +42,7 @@ App = {
     },
 
     loadAccount: async() => {
+        web3.eth.defaultAccount = web3.eth.accounts[0]
         App.account = web3.eth.accounts[0];
         console.log(App.account);
     },
@@ -50,7 +51,6 @@ App = {
         const todoList = await $.getJSON('TodoList.json');
         App.contracts.TodoList = TruffleContract(todoList);
         App.contracts.TodoList.setProvider(App.web3Provider);
-
         App.todoList = await App.contracts.TodoList.deployed();
     },
 
@@ -102,7 +102,7 @@ App = {
             $newTaskTemplate.find("input")
                 .prop('name', taskId)
                 .prop('checked', taskCompleted)
-                .on('click', App.toggleCompleted)
+                .on('click', App.setCompleted)
 
             // Put the task in the correct listStyle: 
             if (taskCompleted) {
@@ -116,6 +116,20 @@ App = {
             $newTaskTemplate.show();
         }
 
+    },
+
+    setCompleted: async(e) => {
+        App.setLoading(true);
+        const idTask = JSON.parse(e.target.name);
+        await App.todoList.setCompleted(idTask);
+        window.location.reload()
+    },
+
+    createTask: async() => {
+        App.setLoading(true);
+        const content = $("#newTask").val();
+        await App.todoList.createTask(content);
+        window.location.reload()
     }
 
 }
