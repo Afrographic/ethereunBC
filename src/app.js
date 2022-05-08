@@ -94,8 +94,6 @@ App = {
             const taskContent = task[1];
             const taskCompleted = task[2];
 
-            console.log(taskContent);
-
             // Create the html for the textDecorationSkip:
             const $newTaskTemplate = $taskTemplate.clone();
             $newTaskTemplate.find(".content").html(taskContent)
@@ -110,8 +108,6 @@ App = {
             } else {
                 $("#taskList").append($newTaskTemplate)
             }
-
-
             // Show the task 
             $newTaskTemplate.show();
         }

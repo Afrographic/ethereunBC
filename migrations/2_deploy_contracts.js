@@ -1,5 +1,5 @@
-const TodoList = artifacts.require("TodoList");
+const AfroToken = artifacts.require("AfroToken");
 
 module.exports = function(deployer) {
-    deployer.deploy(TodoList);
+    deployer.deploy(AfroToken, 1000000);
 };
